@@ -1,12 +1,8 @@
 #cloud-config
 autoinstall:
   version: 1
-#  identity:
-#    hostname: ubuntu
-#    username: ubuntu
-#    password: $6$Jm24Qa4M9379Eyfl$ZXCWcqAFSNN4OWGH/aY8mQufJq2R.nonkgad7FlTwYbKmLaO4jEqFSfqPseaY9ARBiAt04.pleBPRBXOlznh2/
   user-data:
-    hostname: template
+    hostname: ubuntu-cis-template
     users:
       - name: ubuntu
         shell: /bin/bash
@@ -17,7 +13,7 @@ autoinstall:
         shell: /bin/bash
         lock-passwd: false
         passwd: $6$Jm24Qa4M9379Eyfl$ZXCWcqAFSNN4OWGH/aY8mQufJq2R.nonkgad7FlTwYbKmLaO4jEqFSfqPseaY9ARBiAt04.pleBPRBXOlznh2/
-        groups: [adm, sudo]
+        groups: []
   keyboard:
     layout: en
     variant: us

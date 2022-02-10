@@ -1,0 +1,50 @@
+---
+- name: Example ansible playbook
+  hosts: default
+  gather_facts: no
+  become: yes
+
+  tasks:
+    - name: Install desktop
+      apt:
+        pkg:
+        - ubuntu-desktop-minimal
+
+    - name: Set user autologin
+      blockinfile:
+        path: /etc/gdm3/custom.conf
+        insertafter: '\[daemon\]'
+        block: |
+          AutomaticLoginEnable = true
+          AutomaticLogin = user
+
+    - name: Set desktop session for user user
+      copy:
+        dest: /var/lib/AccountsService/users/user
+        content: |
+          [User]
+          XSession=ubuntu-wayland
+          Icon=/home/lm/.face
+          SystemAccount=false
+          
+          [InputSource0]
+          xkb=us
+
+    - name: Set desktop session for user ubuntu
+      copy:
+        dest: /var/lib/AccountsService/users/ubuntu
+        content: |
+          [User]
+          XSession=ubuntu-wayland
+          Icon=/home/lm/.face
+          SystemAccount=false
+          
+          [InputSource0]
+          xkb=us
+
+
+- hosts: default
+  become: yes
+  gather_facts: no
+  roles:
+    - CIS-Ubuntu-20.04-Ansible

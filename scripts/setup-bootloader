@@ -1,0 +1,9 @@
+#!/bin/bash -e
+
+if [ -b /dev/vda ]; then
+	grub-install /dev/vda
+elif [ -b /dev/sda ]; then
+	grub-install /dev/sda
+fi
+update-grub
+

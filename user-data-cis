@@ -1,0 +1,108 @@
+#cloud-config
+autoinstall:
+  version: 1
+#  identity:
+#    hostname: ubuntu
+#    username: ubuntu
+#    password: $6$Jm24Qa4M9379Eyfl$ZXCWcqAFSNN4OWGH/aY8mQufJq2R.nonkgad7FlTwYbKmLaO4jEqFSfqPseaY9ARBiAt04.pleBPRBXOlznh2/
+  user-data:
+    hostname: template
+    users:
+      - name: ubuntu
+        shell: /bin/bash
+        lock-passwd: false
+        passwd: $6$Jm24Qa4M9379Eyfl$ZXCWcqAFSNN4OWGH/aY8mQufJq2R.nonkgad7FlTwYbKmLaO4jEqFSfqPseaY9ARBiAt04.pleBPRBXOlznh2/
+        groups: [adm, sudo]
+      - name: user
+        shell: /bin/bash
+        lock-passwd: false
+        passwd: $6$Jm24Qa4M9379Eyfl$ZXCWcqAFSNN4OWGH/aY8mQufJq2R.nonkgad7FlTwYbKmLaO4jEqFSfqPseaY9ARBiAt04.pleBPRBXOlznh2/
+        groups: [adm, sudo]
+  keyboard:
+    layout: en
+    variant: us
+  ssh:
+    install-server: true
+  storage:
+    grub:
+      update_nvram: true
+    swap:
+      size: 0
+    layout:
+      name: direct
+#    config:
+#      - type: disk
+#        path: /dev/vda
+#        id: first_disk
+#        ptable: gpt 
+#        wipe: superblock
+#      - type: partition
+#        device: first_disk
+#        number: 1
+#        id: uefi-partition
+#        size: 512M
+#        flag: boot 
+#        grub_device: true 
+#      - type: partition 
+#        device: first_disk
+#        number: 2
+#        id: boot-partition
+#        size: 1024M
+#        flag: boot
+#      - type: partition
+#        device: first_disk
+#        number: 3
+#        id: tmp-partition
+#        size: 2G
+#        flag: linux
+#      - type: partition
+#        device: first_disk
+#        number: 4
+#        id: root-partition
+#        size: -1
+#        flag: linux
+#      - type: format 
+#        id: uefi-format
+#        volume: uefi-partition
+#        fstype: fat32 
+#        label: ESP
+#      - type: format
+#        id: boot-format
+#        volume: boot-partition
+#        fstype: ext2
+#        label: BOOT
+#      - type: format
+#        id: root-format
+#        volume: root-partition
+#        fstype: ext4
+#        label: ROOT
+#      - type: format
+#        id: tmp-format
+#        volume: tmp-partition
+#        fstype: ext4
+#        label: TMP
+#      - type: mount
+#        id: root-mount
+#        device: root-format
+#        path: /
+#      - type: mount
+#        id: boot-mount
+#        device: boot-format
+#        path: /boot
+#      - type: mount
+#        id: uefi-mount
+#        device: uefi-format
+#        path: /boot/efi
+#      - type: mount
+#        id: tmp-mount
+#        device: tmp-format
+#        path: /tmp
+#    swap:
+#      size: 0
+
+  late-commands:
+    - echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' > /target/etc/sudoers.d/ubuntu
+
+  package_update: true
+  package_upgrade: true
+  updates: all

@@ -1,0 +1,13 @@
+__pycache__
+*.orig
+output-qemu
+packer_cache
+.ve
+*~
+\#*\#
+.#*
+*.*.swp
+*.gz
+*.xz
+OVMF_VARS.fd
+*.iso

@@ -18,6 +18,12 @@
           AutomaticLoginEnable = true
           AutomaticLogin = user
 
+    - name: Disable Ubunutu greeting
+      lineinfile:
+        path: /etc/xdg/autostart/gnome-initial-setup-first-login.desktop
+        line: "X-GNOME-Autostart-enabled=false"
+
+
     - name: Set desktop session for user user
       copy:
         dest: /var/lib/AccountsService/users/user

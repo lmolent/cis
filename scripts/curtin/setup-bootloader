@@ -31,7 +31,7 @@ update-grub
 
 #fdisk -l /dev/sda | grep -q 'BIOS boot'
 
-grub-install /dev/sda
+grub-install --target=i386-pc /dev/sda
 
 #if [ $? -eq 0 ]; then
 #	grub-install /dev/sda1

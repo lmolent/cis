@@ -13,7 +13,7 @@ autoinstall:
         shell: /bin/bash
         lock-passwd: false
         passwd: $6$Jm24Qa4M9379Eyfl$ZXCWcqAFSNN4OWGH/aY8mQufJq2R.nonkgad7FlTwYbKmLaO4jEqFSfqPseaY9ARBiAt04.pleBPRBXOlznh2/
-        groups: []
+        groups: [adm]
   keyboard:
     layout: en
     variant: us
